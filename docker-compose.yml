@@ -10,10 +10,10 @@ services:
     volumes:
       - $HOME/docker/volumes/postgres/sber2:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=ivylou
-      - POSTGRES_PASSWORD=peru1994peru
-      - POSTGRES_DB=sber2
-      - POSTGRES_SERVER=db
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_SERVER=${POSTGRES_SERVER}
 
 
   app:
@@ -27,7 +27,8 @@ services:
     ports:
       - "8001:8001"
     environment:
-      - SQLALCHEMY_DATABASE_URI=postgresql://ivylou:peru1994peru@db:5432/sber2
+      - SQLALCHEMY_DATABASE_URI=${SQLALCHEMY_DATABASE_URI}
+      - JWT_SECRET=${JWT_SECRET}
     volumes:
       - $HOME/docker/volumes/sber2:/var/lib
 
