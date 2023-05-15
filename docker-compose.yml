@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+
+  db:
+    image: postgres:14.3
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - $HOME/docker/volumes/postgres/sber2:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=ivylou
+      - POSTGRES_PASSWORD=peru1994peru
+      - POSTGRES_DB=sber2
+      - POSTGRES_SERVER=db
+
+
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: app
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8001:8001"
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://ivylou:peru1994peru@db:5432/sber2
+    volumes:
+      - $HOME/docker/volumes/sber2:/var/lib
+

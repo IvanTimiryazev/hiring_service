@@ -10,4 +10,6 @@
 #    echo "There is no script $PRE_START_PATH"
 #fi
 
+alembic upgrade head
+
 exec uvicorn --reload --host 0.0.0.0 --port 8001 app.main:app

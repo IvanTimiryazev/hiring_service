@@ -3,7 +3,7 @@
 export PYTHONPATH=$PYTHONPATH:./app
 
 # Let the DB start
-python ./app/backend_prestart.py
+#python ./app/backend_prestart.py
 
 # Run migrations
 alembic upgrade head
